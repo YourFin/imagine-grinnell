@@ -1,6 +1,6 @@
 Run on one terminal - $ npm run start
 
-Run on another terminal - $ rails s -b $IP -p 3001
+Run on another terminal - $ rails s -b $IP -p 8081
 
 Integrated together upon deployment.
 
