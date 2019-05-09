@@ -45,7 +45,7 @@ class GardenMap extends React.Component {
     let self = this;
     for(var i=0; i<gardenArray.length; i++) {
       let garden = gardenArray[i];
-      self.createMarker(i, garden.lat, garden.long);
+      self.createMarker(garden.id, garden.lat, garden.long);
     }
   }
   
@@ -62,7 +62,8 @@ class GardenMap extends React.Component {
     
     el.addEventListener('click', function(){
       //alert(self.props.gardenArray[this.id].name)
-      self.flyTowards(latitude, longitude);
+      //self.flyTowards(latitude, longitude);
+      self.props.callbackFromParent(id);
     });
   
     var marker = new mapboxgl.Marker(el)
@@ -73,18 +74,17 @@ class GardenMap extends React.Component {
   
   flyTowards(lat, long) {
     if(this.state.map != null) { 
-    this.state.map.flyTo({
-        center: [long, lat],
-        zoom: 16,
-        speed: 1,
-        curve: 2 
-      });
-    }
+      this.state.map.flyTo({
+          center: [long, lat],
+          zoom: 16,
+          speed: 1,
+          curve: 2 
+        });
+      }
   }
   
 
   render() {
-    console.log("yeeeeetttt")
     if (this.props.selectedGardenId != null) {
       const lat = this.props.gardenArray[this.props.selectedGardenId-1].lat;
       const lng = this.props.gardenArray[this.props.selectedGardenId-1].long;

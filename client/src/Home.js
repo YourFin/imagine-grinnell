@@ -63,7 +63,6 @@ class Home extends React.Component {
     }
   
   
-  
     render() {
     let self = this;
     return (
@@ -77,12 +76,10 @@ class Home extends React.Component {
             <a class="item">About</a>
           </div>
         </div>
-        
-        
         <div className='mainContainer'> 
         
           <div className='mapContainer'>
-            <GardenMap selectedGardenId={self.state.selectedGardenId} gardenArray={self.state.gardenArray} />
+            <GardenMap selectedGardenId={self.state.selectedGardenId} gardenArray={self.state.gardenArray} callbackFromParent={this.selectedGardenChanged} />
           </div>
           
           <div className='buttonContainer'>
