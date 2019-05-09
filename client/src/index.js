@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Map from './Map';
+import GardenMap from './GardenMap';
 import App from './App';
 import Home from './Home';
+import 'semantic-ui-css/semantic.css'
 // import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(<div> <Home /> </div>, document.getElementById('root'));

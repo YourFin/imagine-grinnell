@@ -3,7 +3,7 @@ import mapboxgl from 'mapbox-gl'
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiaHVuYWluYWxpIiwiYSI6ImNqYXVsZXE1YjAwNG8zM3BjMW5sNDZxcXEifQ.VR6zCCdNeYORRc1XIBjt1Q';
 
-class Map extends React.Component {
+class GardenMap extends React.Component {
   
   constructor(props) {
     super(props);
@@ -37,8 +37,6 @@ class Map extends React.Component {
     });
     
     this.state.map = map;
-    
-    this.populateGardens();
   }
   
   
@@ -57,38 +55,48 @@ class Map extends React.Component {
     el.className = 'marker';
     el.id = id;
     el.style.cursor = "pointer";
-    el.style.height = '20px';
-    el.style.width = '20px';
-    el.style.backgroundColor = '#76FF03';
-    el.style.border = '2px solid black';
-    console.log(el.id);
+    el.style.height = '22px';
+    el.style.width = '22px';
+    el.style.backgroundColor = '#00FF00';
+    el.style.border = '3px solid black';
     
     el.addEventListener('click', function(){
-      alert(self.props.gardenArray[this.id].name)
+      //alert(self.props.gardenArray[this.id].name)
+      self.flyTowards(latitude, longitude);
     });
-  
   
     var marker = new mapboxgl.Marker(el)
     .setLngLat([longitude, latitude])
     .addTo(this.state.map);
+    
    }
   
-  
+  flyTowards(lat, long) {
+    if(this.state.map != null) { 
+    this.state.map.flyTo({
+        center: [long, lat],
+        zoom: 16,
+        speed: 1,
+        curve: 2 
+      });
+    }
+  }
   
 
   render() {
-    const { lng, lat, zoom } = this.state;
+    console.log("yeeeeetttt")
+    if (this.props.selectedGardenId != null) {
+      const lat = this.props.gardenArray[this.props.selectedGardenId-1].lat;
+      const lng = this.props.gardenArray[this.props.selectedGardenId-1].long;
+      this.flyTowards(lat, lng);
+    }
     this.populateGardens();
-    console.log("Map Render");
     return (
       <div>
-        <div className="inline-block absolute top left mt12 ml12 bg-darken75 color-white z1 py6 px12 round-full txt-s txt-bold">
-          <div>{`Longitude: ${lng} Latitude: ${lat} Zoom: ${zoom}`}</div>
-        </div>
-        <div ref={el => this.mapContainer = el} className="absolute top right left bottom" />
+        <div ref={el => this.mapContainer = el} className='mapComp'> </div>
       </div>
     );
   }
 }
 
-export default Map;
+export default GardenMap;

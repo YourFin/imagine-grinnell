@@ -14,19 +14,86 @@ code {
 }
 
 
-.bottomContainer {
-  bottom:1vh; 
-  position:fixed; 
+.navContainer {
+  top:0vh; 
   width:100vw; 
-  height:16vh;
-  border: 5px solid blue;
+  height:7vh;
+  
+  background-color:	#EDF4F5;
+}
+
+.mainContainer {
+  bottom:0vh; 
+  width:100vw; 
+  height:93vh;
+  padding: 2%;
+  
+  display: flex;
+  
+  background-color:	#EDF4F5;
+  
+}
+
+.mapContainer {
+  width:58%; 
+  height:100%;
+  margin-right: 2%;
+    
+  border: 0px solid #D3D3D3;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(59, 43, 91, 0.20);
+}
+
+.mapComp {
+  width:100%; 
+  height:700px; 
+}
+
+.buttonContainer {
+  width:19%; 
+  height:100%;
+  
+  border: 0px solid green;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(59, 43, 91, 0.20);
+  
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  
+  padding: 2%;
+  
+  background-color: white;
+}
+
+.buttonComp {
+  box-shadow: 0 20px 50px rgba(59, 43, 91, 0.20) !important;
 }
 
 .cardContainer {
-  align: center;
-  right:1vh; 
-  position:fixed; 
-  width:20vw; 
-  height:60vh;
-  border: 5px solid green;
+  width:23%; 
+  height:100%;
+  margin-left: 2%;
+  
+  padding: 1%;
+  padding-top: 2%;
+  
+  border: 0px solid green;
+  border-radius: 8px;
+  
+  background-color: clear;
+}
+
+.cardComp {
+  background-color: white !important;
+  box-shadow: 0 20px 50px rgba(59, 43, 91, 0.22) !important;
+}
+
+
+
+
+button:focus {
+  color: green;
 }

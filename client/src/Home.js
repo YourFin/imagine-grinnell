@@ -1,5 +1,8 @@
 import React from 'react';
-import Map from './Map';
+import GardenMap from './GardenMap';
+import GardenButtons from './GardenButtons';
+import GardenCard from './GardenCard';
+import { Card, Header, Segment, Button, Icon, Dimmer, Loader, Divider } from 'semantic-ui-react'
 
 class Home extends React.Component {
     
@@ -7,7 +10,10 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
       this.state = {
-        gardenArray:[]
+        selectedGardenId: null,
+        gardenArray:[],
+        produceArray:[],
+        gardenProduceArray:[]
       };
   }
   
@@ -16,10 +22,23 @@ class Home extends React.Component {
     fetch('https://igv5-realhunion.c9users.io:8081/gardens')
       .then(response => response.json())
       .then(function(data) {
-        
         self.setState({ gardenArray: data })
-        
       });
+      
+    fetch('https://igv5-realhunion.c9users.io:8081/produces')
+      .then(response => response.json())
+      .then(function(data) {
+        self.setState({ produceArray: data });
+      });
+      
+    fetch('https://igv5-realhunion.c9users.io:8081/garden_produces')
+      .then(response => response.json())
+      .then(function(data) {
+        self.setState({ gardenProduceArray: data });
+      });
+      
+      
+      console.log(this.props.gardenProduceArray);
   }
   
   
@@ -39,11 +58,42 @@ class Home extends React.Component {
 
 
 
-  render() {
+    selectedGardenChanged = (newGardenId) => {
+        this.setState({ selectedGardenId: newGardenId });
+    }
+  
+  
+  
+    render() {
     let self = this;
     return (
       <div> 
-        <Map gardenArray={self.state.gardenArray} />;
+        <div className='navContainer'>
+          <div class="ui fluid horizontal menu">
+            <div class="item">
+              <h3 class="ui header">Imagine Gardens</h3>
+            </div>
+            <a class="item active">Home</a>
+            <a class="item">About</a>
+          </div>
+        </div>
+        
+        
+        <div className='mainContainer'> 
+        
+          <div className='mapContainer'>
+            <GardenMap selectedGardenId={self.state.selectedGardenId} gardenArray={self.state.gardenArray} />
+          </div>
+          
+          <div className='buttonContainer'>
+            <GardenButtons selectedGardenId={self.state.selectedGardenId} gardenArray={self.state.gardenArray} callbackFromParent={this.selectedGardenChanged} />
+          </div>
+          
+          <div className='cardContainer'>
+            <GardenCard selectedGardenId={self.state.selectedGardenId} gardenArray={self.state.gardenArray} gardenProduceArray={self.state.gardenProduceArray} produceArray={self.state.produceArray} />
+          </div>
+  
+        </div>
       </div>
     );
   }
