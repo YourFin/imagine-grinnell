@@ -19,19 +19,19 @@ class Home extends React.Component {
   
   componentDidMount() {
     let self = this;
-    fetch('https://igv5-realhunion.c9users.io:8081/gardens')
+    fetch('https://imagine-grinnell-liamliden.c9users.io:8081/gardens')
       .then(response => response.json())
       .then(function(data) {
         self.setState({ gardenArray: data })
       });
       
-    fetch('https://igv5-realhunion.c9users.io:8081/produces')
+    fetch('https://imagine-grinnell-liamliden.c9users.io:8081/produces')
       .then(response => response.json())
       .then(function(data) {
         self.setState({ produceArray: data });
       });
       
-    fetch('https://igv5-realhunion.c9users.io:8081/garden_produces')
+    fetch('https://imagine-grinnell-liamliden.c9users.io:8081/garden_produces')
       .then(response => response.json())
       .then(function(data) {
         self.setState({ gardenProduceArray: data });
