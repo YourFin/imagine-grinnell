@@ -1,0 +1,99 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+
+.navContainer {
+  top:0vh; 
+  width:100vw; 
+  height:7vh;
+  
+  background-color:	#EDF4F5;
+}
+
+.mainContainer {
+  bottom:0vh; 
+  width:100vw; 
+  height:93vh;
+  padding: 2%;
+  
+  display: flex;
+  
+  background-color:	#EDF4F5;
+  
+}
+
+.mapContainer {
+  width:58%; 
+  height:100%;
+  margin-right: 2%;
+    
+  border: 0px solid #D3D3D3;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(59, 43, 91, 0.20);
+}
+
+.mapComp {
+  width:100%; 
+  height:700px; 
+}
+
+.buttonContainer {
+  width:19%; 
+  height:100%;
+  
+  border: 0px solid green;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(59, 43, 91, 0.20);
+  
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  
+  padding: 2%;
+  
+  background-color: white;
+}
+
+.buttonComp {
+  box-shadow: 0 20px 50px rgba(59, 43, 91, 0.20) !important;
+}
+
+.cardContainer {
+  width:23%; 
+  height:100%;
+  margin-left: 2%;
+  
+  padding: 1%;
+  padding-top: 2%;
+  
+  border: 0px solid green;
+  border-radius: 8px;
+  
+  background-color: clear;
+}
+
+.cardComp {
+  background-color: white !important;
+  box-shadow: 0 20px 50px rgba(59, 43, 91, 0.22) !important;
+}
+
+
+
+
+button:focus {
+  color: green;
+}
