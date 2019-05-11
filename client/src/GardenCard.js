@@ -30,7 +30,7 @@ class GardenCard extends React.Component {
   returnGardenImage() {
       const gardenArray = this.props.gardenArray;
       const selectedGardenId = this.props.selectedGardenId;
-      if (gardenArray[selectedGardenId-1] != null) {
+      if (gardenArray[selectedGardenId] != null) {
         return <img src="https://www.goodnet.org/photos/620x0/29079.jpg"/>;
       } else {
           return <div class="ui fluid placeholder"> <div class="image"></div> </div>;
@@ -40,8 +40,8 @@ class GardenCard extends React.Component {
   returnGardenName() {
       const gardenArray = this.props.gardenArray;
       const selectedGardenId = this.props.selectedGardenId;
-      if (gardenArray[selectedGardenId-1] != null) {
-        return gardenArray[selectedGardenId-1].name;
+      if (gardenArray[selectedGardenId] != null) {
+        return gardenArray[selectedGardenId].name;
       } else {
           return <div class="ui fluid placeholder"> <div class="line"></div> </div>;
     }
@@ -50,8 +50,8 @@ class GardenCard extends React.Component {
    returnGardenAddress() {
       const gardenArray = this.props.gardenArray;
       const selectedGardenId = this.props.selectedGardenId;
-      if (gardenArray[selectedGardenId-1] != null) {
-        return gardenArray[selectedGardenId-1].address;
+      if (gardenArray[selectedGardenId] != null) {
+        return gardenArray[selectedGardenId].address;
       } else {
           return <div class="ui fluid placeholder"> <div class="line"></div> </div>;
     }

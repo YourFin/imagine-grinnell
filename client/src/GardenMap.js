@@ -86,8 +86,8 @@ class GardenMap extends React.Component {
 
   render() {
     if (this.props.selectedGardenId != null) {
-      const lat = this.props.gardenArray[this.props.selectedGardenId-1].lat;
-      const lng = this.props.gardenArray[this.props.selectedGardenId-1].long;
+      const lat = this.props.gardenArray[this.props.selectedGardenId].lat;
+      const lng = this.props.gardenArray[this.props.selectedGardenId].long;
       this.flyTowards(lat, lng);
     }
     this.populateGardens();
