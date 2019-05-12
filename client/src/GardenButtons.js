@@ -33,16 +33,24 @@ class GardenButtons extends React.Component {
   
 
   render() {
+    console.log("GardenButtons Redner called...")
     const { selectedGardenId, gardenArray } = this.props;
+    
+    gardenArray.sort(function(a, b){
+      if(a.name < b.name) { return -1; }
+      if(a.name > b.name) { return 1; }
+      return 0;
+    });
+    
     const self = this;
     return (
       <div>
         <h2 class="ui dividing header">Gardens</h2>
         <div class="ui hidden divider"></div>
-          {gardenArray.map((garden, index) => {
-            var buttonComp = React.createElement('button', {class: "ui toggle fluid button", onClick: function (){ self.handleClick(garden.id)}}, `${garden.name}`);
+          {gardenArray.map(garden => {
+            var buttonComp = React.createElement('button', {class: "ui toggle fluid button", onMouseOver: function (){ self.handleClick(garden.id)}}, `${garden.name}`);
             if(selectedGardenId == garden.id) {
-              buttonComp = React.createElement('button', {class: "ui green toggle fluid button", onClick: function (){ self.handleClick(garden.id)}}, `${garden.name}`);
+              buttonComp = React.createElement('button', {class: "ui green toggle fluid button", onMouseOver: function (){ self.handleClick(garden.id)}}, `${garden.name}`);
             }
             const dividerComp = React.createElement('div', {class: 'ui hidden divider'}, null);
             return [buttonComp, dividerComp];

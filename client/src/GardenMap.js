@@ -8,7 +8,6 @@ class GardenMap extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      gardenArray: [],
       map: null,
       lng: -92.723266,
       lat: 41.743269,
@@ -25,44 +24,36 @@ class GardenMap extends React.Component {
       center: [lng, lat],
       zoom
     });
-
-    map.on('move', () => {
-      const { lng, lat } = map.getCenter();
-
-      // this.setState({
-      //   lng: lng.toFixed(4),
-      //   lat: lat.toFixed(4),
-      //   zoom: map.getZoom().toFixed(2)
-      // });
-    });
     
     this.state.map = map;
   }
   
-  
-  populateGardens() {
-    const { gardenArray } = this.props;
-    let self = this;
-    for(var i=0; i<gardenArray.length; i++) {
-      let garden = gardenArray[i];
-      self.createMarker(garden.id, garden.lat, garden.long);
+  componentWillReceiveProps (newProps) {
+    var newGardenArray = newProps.gardenArray;
+    if(this.props.gardenArray != newGardenArray) {
+      this.populateGardenMarkers(newGardenArray);
     }
+   }
+  
+  
+  populateGardenMarkers(gardenArray) {
+    gardenArray.map(garden => {
+      this.createMarker(garden.id, garden.lat, garden.long);
+    })
   }
   
   createMarker(id, latitude, longitude) {
     let self = this;
     var el = document.createElement('div');
     el.className = 'marker';
-    el.id = id;
     el.style.cursor = "pointer";
     el.style.height = '22px';
     el.style.width = '22px';
     el.style.backgroundColor = '#00FF00';
     el.style.border = '3px solid black';
     
-    el.addEventListener('click', function(){
-      //alert(self.props.gardenArray[this.id].name)
-      //self.flyTowards(latitude, longitude);
+    el.addEventListener('mouseover', function(){
+      self.flyTowards(latitude, longitude);
       self.props.callbackFromParent(id);
     });
   
@@ -85,12 +76,15 @@ class GardenMap extends React.Component {
   
 
   render() {
-    if (this.props.selectedGardenId != null) {
-      const lat = this.props.gardenArray[this.props.selectedGardenId].lat;
-      const lng = this.props.gardenArray[this.props.selectedGardenId].long;
-      this.flyTowards(lat, lng);
+    const { selectedGardenId, gardenArray } = this.props;
+    
+    var selectedGarden = gardenArray.find(obj => {
+      return obj.id == selectedGardenId;
+    })
+    if(selectedGarden!=null) {
+      this.flyTowards(selectedGarden.lat, selectedGarden.long);
     }
-    this.populateGardens();
+    
     return (
       <div>
         <div ref={el => this.mapContainer = el} className='mapComp'> </div>
@@ -100,3 +94,4 @@ class GardenMap extends React.Component {
 }
 
 export default GardenMap;
+

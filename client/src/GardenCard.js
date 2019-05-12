@@ -12,6 +12,7 @@ class GardenCard extends React.Component {
         produceArray: []
     };
     
+    
   }
 
   componentDidMount() {
@@ -27,11 +28,15 @@ class GardenCard extends React.Component {
 //     }
 //   }
 
+  
   returnGardenImage() {
       const gardenArray = this.props.gardenArray;
-      const selectedGardenId = this.props.selectedGardenId;
-      if (gardenArray[selectedGardenId] != null) {
-        return <img src="https://www.goodnet.org/photos/620x0/29079.jpg"/>;
+      var selectedGardenId = this.props.selectedGardenId;
+      var garden = gardenArray.find(obj => {
+        return obj.id == selectedGardenId;
+      })
+      if (garden != null) {
+        return <img src={garden.image} />;
       } else {
           return <div class="ui fluid placeholder"> <div class="image"></div> </div>;
     }
@@ -39,83 +44,79 @@ class GardenCard extends React.Component {
   
   returnGardenName() {
       const gardenArray = this.props.gardenArray;
-      const selectedGardenId = this.props.selectedGardenId;
-      if (gardenArray[selectedGardenId] != null) {
-        return gardenArray[selectedGardenId].name;
+      var selectedGardenId = this.props.selectedGardenId;
+      var garden = gardenArray.find(obj => {
+        return obj.id == selectedGardenId;
+      })
+      if (garden != null) {
+        return garden.name;
       } else {
           return <div class="ui fluid placeholder"> <div class="line"></div> </div>;
     }
   }
   
-   returnGardenAddress() {
+  returnGardenAddress() {
       const gardenArray = this.props.gardenArray;
-      const selectedGardenId = this.props.selectedGardenId;
-      if (gardenArray[selectedGardenId] != null) {
-        return gardenArray[selectedGardenId].address;
+      var selectedGardenId = this.props.selectedGardenId;
+      var garden = gardenArray.find(obj => {
+        return obj.id == selectedGardenId;
+      })
+      if (garden != null) {
+        return garden.address;
       } else {
           return <div class="ui fluid placeholder"> <div class="line"></div> </div>;
     }
   }
   
   returnGardenItems() {
+    
     const gardenProduceArray = this.props.gardenProduceArray;
-    const selectedGardenId = this.props.selectedGardenId;
+    var selectedGardenId = this.props.selectedGardenId;
+    var filteredGardenProduceArray = gardenProduceArray.filter(obj => {
+        return obj.garden_id == selectedGardenId;
+    })
     
-    const filteredGardenProduceArray = gardenProduceArray.filter(function (i,n){
-        return i.garden_id===selectedGardenId;
-    });
+    filteredGardenProduceArray.sort(function(a, b){
+      if(a.available_at < b.available_at) { return -1; }
+      if(a.available_at > b.available_at) { return 1; }
+      return 0;
+    })
     
-    var gardenProduceCompArray = []
+    console.log(filteredGardenProduceArray);
     
-    for(var i=0; i<filteredGardenProduceArray.length; i++) {
-      const gardenProduce = filteredGardenProduceArray[i];
-      const produce = this.getProduceForId(gardenProduce.produce_id);
-      
-      if(gardenProduce.readiness == 2) {
-        const MyComponent = () => {
-      return <div class="item"> <a class="ui small green image label"> <img src={produce.image}/> {produce.name} <div class="detail">Available</div> </a> </div>
-      }
-        gardenProduceCompArray.push(this.myComponent)
-      } else if(gardenProduce.readiness == 1) {
-        const MyComponent = () => {
-      return <div class="item"> <a class="ui small yellow image label"> <img src={produce.image}/> {produce.name} <div class="detail">Ready {produce.available_at}</div> </a> </div>
-      }
-        gardenProduceCompArray.push(this.myComponent)
-      } else {
-        const MyComponent = () => {
-      return <div class="item"> <a class="ui small yellow image label"> <img src={produce.image}/> {produce.name} <div class="detail">Unavailable</div> </a> </div>
-      }
-        gardenProduceCompArray.push(this.myComponent)
-      }
-    }
+    if(filteredGardenProduceArray.length == 0 && selectedGardenId!=null) {
+      return <div class="ui relaxed list"> <div class="item"> <a class="ui small grey image label"> <img src=""/> Sorry <div class="detail">No Produce available</div> </a> </div> </div>
+    } else {
     
     return <div class="ui relaxed list"> 
-      {filteredGardenProduceArray.map((value, index) => {
-        const gardenProduce = value;
+      {filteredGardenProduceArray.map(obj => {
+        const gardenProduce = obj;
+        const date = gardenProduce.available_at;
         const produce = this.getProduceForId(gardenProduce.produce_id);
         
         if(gardenProduce.readiness == 2) {
-          return <div class="item"> <a class="ui small green image label"> <img src={produce.image}/> {produce.name} <div class="detail">Available</div> </a> </div>
-        } else if(gardenProduce.readiness == 1) {
-          const date = gardenProduce.available_at;
-          return <div class="item"> <a class="ui small yellow image label"> <img src={produce.image}/> {produce.name} <div class="detail">Ready {date.substring(5,7)}/{date.substring(8,10)}/{date.substring(2,4)}</div> </a> </div>
-        } else {
-          return <div class="item"> <a class="ui small yellow image label"> <img src={produce.image}/> {produce.name} <div class="detail">Unavailable</div> </a> </div>
+          return <div class="item"> <a class="ui small green image label"> <img src={produce.image}/> {produce.name}s <div class="detail">Available</div> </a> </div>
+        } 
+        else if(gardenProduce.readiness == 1) {
+          return <div class="item"> <a class="ui small yellow image label"> <img src={produce.image}/> {produce.name}s <div class="detail">Ready {date.substring(5,7)}/{date.substring(8,10)}/{date.substring(2,4)}</div> </a> </div>
+        } 
+        else {
+          return <div class="item"> <a class="ui small orange image label"> <img src={produce.image}/> {produce.name}s <div class="detail">Ready {date.substring(5,7)}/{date.substring(8,10)}/{date.substring(2,4)}</div> </a> </div>
         }
       })}
     </div>
+    }
   }
   
-  
   getProduceForId(produceId) {
-    const produceArray = this.props.produceArray;
-    const filteredProduceArray = produceArray.filter(function (i,n){
-        return i.id===produceId;
-    });
-    if(filteredProduceArray[0] == []) {
-      //error response
-    } else {
-      return filteredProduceArray[0];
+      const produceArray = this.props.produceArray;
+      var produce = produceArray.find(obj => {
+        return obj.id == produceId;
+      })
+      if (produce != null) {
+        return produce
+      } else {
+          //error message.
     }
   }
   
@@ -123,8 +124,9 @@ class GardenCard extends React.Component {
   
 
   render() {
+    console.log(this.props.gardenProduceArray);
     const { selectedGardenId, gardenArray, gardenProduceArray, produceArray } = this.props;
-    this.returnGardenItems();
+    //this.returnGardenItems();
     return (
       <div>
         <h2 class="ui dividing header">What's Available</h2>

@@ -97,3 +97,13 @@ code {
 button:focus {
   color: green;
 }
+
+
+
+.markerComp {
+  cursor : pointer;
+  height : 22px;
+  width : 22px;
+  background-color : #00FF00;
+  border : 3px solid black;
+}

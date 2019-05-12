@@ -1,7 +1,7 @@
 [
   {
     "id": 0,
-    "name": "Davis Elementary School",
+    "name": "Davis Elementary School Garden",
     "address": "818 Hamilton Ave.",
     "lat": 41.737209,
     "long": -92.725381,
@@ -14,7 +14,7 @@
   },
   {
     "id": 1,
-    "name": "GRMC Public Health",
+    "name": "GRMC Public Health Garden",
     "address": "306 4th Ave.",
     "lat": 41.742474,
     "long": -92.732863,
@@ -54,7 +54,7 @@
   },
   {
     "id": 4,
-    "name": "St. John's Lutheran Church",
+    "name": "St. John's Lutheran Church Garden",
     "address": "1224 East St.",
     "lat": 41.748438,
     "long": -92.717234,
@@ -67,7 +67,7 @@
   },
   {
     "id": 5,
-    "name": "Summer Street Park",
+    "name": "Summer Street Park Garden",
     "address": "736 Summer St.",
     "lat": 41.741654,
     "long": -92.714006,
