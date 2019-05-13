@@ -75,12 +75,11 @@ class Home extends React.Component {
             </div>
             <a class="item active">Home</a>
             <Modal size='small' trigger={<a class='item'>About</a>} closeIcon>
-              <Header image='https://scontent.xx.fbcdn.net/v/t1.0-1/c0.1.50.50a/p50x50/72250_10151735220225342_873865100_n.jpg?_nc_cat=110&_nc_ht=scontent.xx&oh=c50771d79e9ebe7e4f939631984cd34a&oe=5D6F0FAE' content='About Imagine Grinnell' />
+              <Header icon='info circle' content='About Imagine Grinnell' />
               <Modal.Content>
-                <p>In 2019, Imagine Grinnell will celebrate its 35th year of helping to make Grinnell a healthier and more sustainable community. Thanks to friends and supporters like you, IG has worked hard to increased access to healthy locally-grown food and outdoor activities, reduce our town’s environmental footprint through solar and energy efficiency programs, increase recycling and water-quality improvement projects, to name just a few!
-                </p><p>In 2018, our staff and volunteers completed a three-year fundraising campaign for the new skatepark, hosted educational events and expanded our Giving Gardens. We worked with Ahrens Park to make their facilities more environmentally-friendly. We also held the area’s first gravel-riding bike tour, raising awareness of our bicycle-friendly community and attracting cyclists from across the region.
-                </p><p>This year, we will be launching new initiatives, including an annual gravel-biking festival, new solar and recycling projects,healthy food and outdoor activity programs, and much more.
-                </p><p>If your budget allows, we hope that you will consider making a tax deductible gift to Imagine Grinnell’s operational fund to help us continue to do the special projects that add to our town’s resilliency, vibrancy and unique character. You can send a check to: Imagine Grinnell, PO Box 538, Grinnell, Iowa, 50112. Or <a href="https://imaginegrinnell.org/donate/" target="_blank">donate online</a>!
+                <p>Imagine Grinnell turns imagination into action to create a more vibrant, sustainable, and healthy Grinnell. Our roots deepen relationships and enrich the community we serve.
+                </p><p>Imagine Grinnell has worked as a valued member of the Grinnellian community since its founding in 1983. Brought forth during the midst of the Farm Crisis, their initial goal was to provide sustainable infrastructure to the city of Grinnell, as well as resources for its low-income community. Previous projects have included working with the city to institute its first recycling program and increase the quality of its water supply, enabling outdoor activities such as the recent renovation of the skate park, and the establishment and maintenance of its Giving Gardens program.
+                </p><p>The Giving Gardens is a collective program composed of community partners across the city of Grinnell, including several churches among other civically-minded individuals. The basic premise is that each garden is supervised and administered by a partner of Imagine Grinnell, who then works with their individual constituencies to plant, foster, and ultimately provide no-cost, fresh produce the community in need.
                 </p>
               </Modal.Content>
             </Modal>

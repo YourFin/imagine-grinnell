@@ -52,7 +52,7 @@ class GardenMap extends React.Component {
     el.style.backgroundColor = '#00FF00';
     el.style.border = '3px solid black';
     
-    el.addEventListener('mouseover', function(){
+    el.addEventListener('click', function(){
       self.flyTowards(latitude, longitude);
       self.props.callbackFromParent(id);
     });
