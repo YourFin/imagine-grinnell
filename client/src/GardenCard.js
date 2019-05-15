@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Header, Segment, Button, Icon, Dimmer, Loader, Divider } from 'semantic-ui-react'
+import { Card, Header, Segment, Button, Icon, Dimmer, Loader, Divider, Label } from 'semantic-ui-react'
 
 class GardenCard extends React.Component {
   
@@ -105,6 +105,7 @@ class GardenCard extends React.Component {
         }
       })}
     </div>
+    
     }
   }
   

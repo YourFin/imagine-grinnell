@@ -5,35 +5,15 @@ class GardenButtons extends React.Component {
   
   constructor(props) {
     super(props);
-    this.state = {
-      gardenArray: [],
-      selectedGardenId: 0,
-    };
-    
-    this.state.selectedGardenId = this.props.selectedGardenId;
-  }
-
-  componentDidMount() {
   }
   
   
-//   populateGardens() {
-//     const { gardenArray } = this.props;
-//     let self = this;
-//     for(var i=0; i<gardenArray.length; i++) {
-//       let garden = gardenArray[i];
-//       self.createMarker(i, garden.lat, garden.long);
-//     }
-//   }
-  
-  handleClick(newGardenId) {
-    //this.setState({selectedGardenId: newGardenId});
+  handleGardenClick(newGardenId) {
     this.props.callbackFromParent(newGardenId);
   }
   
 
   render() {
-    console.log("GardenButtons Redner called...")
     const { selectedGardenId, gardenArray } = this.props;
     
     gardenArray.sort(function(a, b){
@@ -46,19 +26,25 @@ class GardenButtons extends React.Component {
     return (
       <div>
         <h2 class="ui dividing header">Gardens</h2>
-        <div class="ui hidden divider"></div>
           {gardenArray.map(garden => {
-            var buttonComp = React.createElement('button', {class: "ui toggle fluid button", onMouseOver: function (){ self.handleClick(garden.id)}}, `${garden.name}`);
+            
+            var styleClass = "ui toggle fluid button";
             if(selectedGardenId == garden.id) {
-              buttonComp = React.createElement('button', {class: "ui green toggle fluid button", onMouseOver: function (){ self.handleClick(garden.id)}}, `${garden.name}`);
+              styleClass = "ui green toggle fluid button"
             }
+            
+            var buttonComp = React.createElement('button', {class: styleClass, 
+              onMouseOver: function (){ self.handleGardenClick(garden.id)}}, garden.name);
+            
             const dividerComp = React.createElement('div', {class: 'ui hidden divider'}, null);
-            return [buttonComp, dividerComp];
+            
+            return [dividerComp, buttonComp];
             
           })}
       </div>
     );
   }
+  
 }
 
 export default GardenButtons;

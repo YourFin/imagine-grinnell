@@ -1,3 +1,14 @@
+TO DO for Frontend:
+
+- Map size is fixed right now. Fix Map size attribute to make it variable to screen size.
+- Include last updated at (use Semantic Pointing Label to Card) (compare updated_at field for all garden produces & pick latest update date)
+- Make mobile compatible
+- Preload images only once (load image w/t less resolution) (not everyone has unlimited bandwith at disposal) (cache it)
+
+
+----
+
+
 Running Node + Rails
 
 1. $ Bundle Install

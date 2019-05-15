@@ -64,6 +64,8 @@ class Home extends React.Component {
   
   
     render() {
+      console.log(this.state.gardenArray)
+      console.log(this.state.gardenProduceArray)
     let self = this;
     return (
       <div> 
@@ -99,7 +101,6 @@ class Home extends React.Component {
           <div className='cardContainer'>
             <GardenCard selectedGardenId={self.state.selectedGardenId} gardenArray={self.state.gardenArray} gardenProduceArray={self.state.gardenProduceArray} produceArray={self.state.produceArray} />
           </div>
-  
         </div>
       </div>
     );
