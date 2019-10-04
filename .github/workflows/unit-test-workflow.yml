@@ -9,7 +9,6 @@ jobs:
       - uses: actions/checkout@v1
       - name: Build the Docker images
         uses: docker://postgres
-        uses: docker://ruby:2.6.4
         run: docker-compose build
       - name: Run tests
         run: docker-compose run rails bin/test.sh
