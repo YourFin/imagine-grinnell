@@ -8,7 +8,6 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Build the Docker images
-        uses: docker://postgres
         run: docker-compose build
       - name: Run tests
         run: docker-compose run rails bin/test.sh
